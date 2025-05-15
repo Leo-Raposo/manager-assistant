@@ -1,0 +1,318 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.header {
+    margin-bottom: 30px;
+    text-align: center;
+
+    h1 {
+        color: #1e4c94;
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: #555;
+        font-size: 16px;
+    }
+}
+
+.input-group {
+    margin-bottom: 20px;
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+
+        &:focus {
+            outline: none;
+            border-color: #1e4c94;
+            box-shadow: 0 0 0 2px rgba(30, 76, 148, 0.2);
+        }
+    }
+
+    small {
+        display: block;
+        margin-top: 4px;
+        color: #777;
+        font-size: 12px;
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.2s;
+
+        &.primary {
+            background-color: #1e4c94;
+            color: white;
+
+            &:hover {
+                background-color: #163a75;
+            }
+        }
+
+        &:not(.primary) {
+            background-color: #e0e0e0;
+            color: #333;
+
+            &:hover {
+                background-color: #d0d0d0;
+            }
+        }
+    }
+}
+
+.output-group {
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .output-container {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #f8f8f8;
+    }
+
+    .output-text {
+        padding: 12px;
+        font-family: 'Courier New', monospace;
+        word-break: break-all;
+    }
+}
+
+// Estilo para a lista de caminhos
+.path-list {
+    margin-top: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: visible;
+    /* Alterado de 'hidden' para 'visible' para mostrar elementos fora da lista */
+
+    .path-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #e0e0e0;
+
+        h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #1e4c94;
+        }
+
+        .path-list-actions {
+            display: flex;
+            gap: 10px;
+
+            button {
+                padding: 6px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 13px;
+                transition: background-color 0.2s;
+
+                &.secondary {
+                    background-color: #1e4c94;
+                    color: white;
+
+                    &:hover {
+                        background-color: #163a75;
+                    }
+                }
+
+                &.danger {
+                    background-color: #f44336;
+                    color: white;
+
+                    &:hover {
+                        background-color: #d32f2f;
+                    }
+                }
+            }
+        }
+    }
+
+    .path-list-items {
+        max-height: 400px;
+        overflow-y: auto;
+        position: relative;
+        /* Estabelece um contexto para posicionamento absoluto */
+
+        .path-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+            /* Contexto para posicionamento absoluto */
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                background-color: #f9f9f9;
+            }
+
+            .path-item-number {
+                min-width: 30px;
+                color: #777;
+                font-weight: 600;
+            }
+
+            .path-item-text {
+                flex-grow: 1;
+                font-family: 'Courier New', monospace;
+                word-break: break-all;
+                margin-right: 15px;
+            }
+
+            .path-item-actions {
+                display: flex;
+                gap: 5px;
+
+                .icon-button {
+                    position: relative;
+                    width: 32px;
+                    height: 32px;
+                    border: none;
+                    border-radius: 4px;
+                    background-color: #f0f0f0;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background-color 0.2s;
+
+                    &:hover {
+                        background-color: #e0e0e0;
+                    }
+
+                    &.danger:hover {
+                        background-color: #ffebee;
+                    }
+
+                    i {
+                        display: block;
+                        width: 16px;
+                        height: 16px;
+                    }
+
+                    .copy-icon {
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+
+                    .check-icon {
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+
+                    .remove-icon {
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f44336' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Nova abordagem: posicionar a notificação "Copiado!" como um elemento fixo na tela */
+.icon-text {
+    position: fixed;
+    /* Posicionamento fixo na janela do navegador */
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    /* Z-index muito alto para garantir que fique acima de tudo */
+    animation: fadeInOut 1.5s ease;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #4CAF50;
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
