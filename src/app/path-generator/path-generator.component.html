@@ -22,7 +22,7 @@
     </div>
 
     <div class="output-group" *ngIf="output">
-        <label>Último item gerado:</label>
+        <label>Último artefato gerado:</label>
         <div class="output-container">
             <div class="output-text">{{ output }}</div>
         </div>
@@ -30,7 +30,7 @@
 
     <div class="path-list" *ngIf="pathList.length > 0">
         <div class="path-list-header">
-            <h2>Lista de Caminhos Gerados ({{ pathList.length }})</h2>
+            <h2>Lista de Artefatos Gerados ({{ pathList.length }})</h2>
             <div class="path-list-actions">
                 <button (click)="copyAllToClipboard()" class="secondary">Copiar Todos</button>
                 <button (click)="clearList()" class="danger">Limpar Lista</button>
