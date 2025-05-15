@@ -34,11 +34,51 @@ export class PathGeneratorComponent {
       return;
     }
 
+    let sanitizedPath = '';
+
+    // Verificar se é um link completo do repositório
+    if (this.filePath.includes('/blob/')) {
+      try {
+        // Extrair o nome do repositório e a branch/caminho
+        const url = new URL(this.filePath.trim());
+        const pathParts = url.pathname.split('/');
+
+        // Remover elementos vazios que possam existir
+        const cleanPathParts = pathParts.filter(part => part !== '' && part !== '-');
+
+        // Encontrar o índice de 'blob' no caminho
+        const blobIndex = cleanPathParts.findIndex(part => part === 'blob');
+
+        if (blobIndex !== -1 && blobIndex > 0) {
+          // Obter o nome do repositório (último elemento antes de blob)
+          const repoName = cleanPathParts[blobIndex - 1];
+
+          // Obter o nome da branch (elemento após 'blob')
+          const branchName = cleanPathParts[blobIndex + 1];
+
+          // Pegar o restante do caminho após a branch
+          const filePath = cleanPathParts.slice(blobIndex + 2).join('/');
+
+          // Montar o caminho sanitizado: repoName/branchName/filePath (sem '-/' ou outros elementos indesejados)
+          sanitizedPath = `${repoName}/${branchName}/${filePath}`;
+        } else {
+          // Fallback caso o formato seja diferente do esperado
+          sanitizedPath = this.filePath.trim();
+        }
+      } catch (error) {
+        console.error('Erro ao processar URL:', error);
+        sanitizedPath = this.filePath.trim();
+      }
+    } else {
+      // Se não for um link, usar o valor como está
+      sanitizedPath = this.filePath.trim();
+    }
+
     // Garantir que a hash tenha apenas os 10 primeiros caracteres
     const trimmedHash = this.commitHash.trim().substring(0, 10);
 
     // Gerar a saída no formato desejado
-    const formattedPath = `${this.filePath.trim()}#${trimmedHash}`;
+    const formattedPath = `${sanitizedPath}#${trimmedHash}`;
 
     // Adicionar à lista
     this.pathList.push({
